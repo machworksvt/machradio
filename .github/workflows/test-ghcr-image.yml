@@ -1,0 +1,27 @@
+name: Test Published GHCR Image
+
+on:
+  push: 
+    branches: 
+    - main 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/machworksvt/machradio-dev:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Verify container and MAVSDK package
+        run: |
+          echo "image pull worked"
+          bash --version
+          dpkg-query -W -f='${Package} ${Version}\n' libmavsdk-dev

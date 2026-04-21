@@ -1,0 +1,4 @@
+services:
+  dev:
+    devices:
+      - "${USB_DEVICE:~/dev/ttyUSB0}:${USB_DEVICE:~/dev/ttyUSB0}"

@@ -9,6 +9,8 @@ services:
       - .:/workspace:rw
     environment:
       - ROS_DOMAIN_ID=0
+    device:
+      - "/dev/ttyUSB0:/dev/ttyUSB0" # Note this might change due to the USB port
     network_mode: host
     stdin_open: true
     tty: true
